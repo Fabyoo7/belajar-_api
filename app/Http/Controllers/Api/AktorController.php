@@ -11,79 +11,93 @@ class AktorController extends Controller
     public function index()
     {
         $aktor = Aktor::latest()->get();
-        $respons = [
+        $response = [
             'success' => true,
-            'massage' => 'Daftar aktor',
-            'data' => $aktor,
+            'message' => 'Daftar Aktor',
+            'data' => $Aktor,
         ];
 
-        return response()->json($respons, 200);
+        return response()->json($response, 200);
     }
 
+  
+    // public function create()
+    // {
+        
+    // }
+
+   
     public function store(Request $request)
     {
         $aktor = new Aktor();
         $aktor->nama_aktor = $request->nama_aktor;
-        $aktor->biodata = $request->biodata;
+        $aktor->bio = $request->bio;
         $aktor->save();
         return response()->json([
-            'success' => true,
-            'message' => 'data aktor berhasil disimpan',
+            'success'=> true,
+            'message'=> 'data berhasil disimpan'
         ], 201);
     }
 
+    
     public function show($id)
     {
         $aktor = Aktor::find($id);
         if ($aktor) {
-            return response()->json([
+            return response([
                 'success' => true,
-                'message' => 'detail aktor',
+                'message' => 'Detail Aktor disimpan',
                 'data' => $aktor,
-            ], 200);
+            ],200 );
         } else {
             return response()->json([
-                'success' => false,
-                'message' => 'data aktor tidak ditemukan',
-            ], 404);
+                'success'=> false,
+                'message'=> 'data tidak ditemukan'
+            ]);
         }
     }
 
+    
+    // public function edit(Aktor $Aktor)
+    // {
+        
+    // }
+
+    
     public function update(Request $request, $id)
     {
         $aktor = Aktor::find($id);
         if ($aktor) {
             $aktor->nama_aktor = $request->nama_aktor;
-            $aktor->biodata = $request->biodata;
+            $aktor->bio = $request->bio;
             $aktor->save();
-            return response()->json([
+            return response([
                 'success' => true,
-                'message' => 'detail aktor dsimpan',
-                'data' => $aktor,
-            ], 200);
+                'message' => 'Data berhasil diperbarui',
+                'data' => $Aktor,
+            ],200 );
         } else {
             return response()->json([
-                'success' => false,
-                'message' => 'data berhasil diperbarui',
-            ], 404);
-        }
+                'success'=> false,
+                'message'=> 'data gagal diperbarui'
+            ]);
+        }   
     }
 
-    public function destroy($id)
+    public function destroy(Aktor $id)
     {
         $aktor = Aktor::find($id);
         if ($aktor) {
             $aktor->delete();
             return response()->json([
-                'success' => true,
-                'message' => 'data' . $aktor->nama_aktor . 'berhasil di hapus',
+                'success'=> true,
+                'message'=> 'Data' . $aktor->nama_aktor . 'Berhasil dihapus',
             ]);
         } else {
             return response()->json([
                 'success' => false,
-                'message' => 'data aktor tidak ditemukan',
-            ], 404);
-        }
+                'message' => 'data tidak ditemukan'
+            ]);
     }
-
+    }
 }
