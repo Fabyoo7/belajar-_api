@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Aktor;
 use Illuminate\Http\Request;
 
-class Aktorcontroller extends Controller
+class AktorController extends Controller
 {
     public function index()
     {
