@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Aktor;
 use Illuminate\Http\Request;
 
@@ -10,11 +9,11 @@ class AktorController extends Controller
 {
     public function index()
     {
-        $aktor = Aktor::latest()->get();
+        $aktor = aktor::latest()->get();
         $response = [
             'success' => true,
-            'message' => 'Daftar Aktor',
-            'data' => $Aktor,
+            'message' => 'Daftar aktor',
+            'data' => $aktor,
         ];
 
         return response()->json($response, 200);
@@ -29,7 +28,7 @@ class AktorController extends Controller
    
     public function store(Request $request)
     {
-        $aktor = new Aktor();
+        $aktor = new aktor();
         $aktor->nama_aktor = $request->nama_aktor;
         $aktor->bio = $request->bio;
         $aktor->save();
@@ -42,11 +41,11 @@ class AktorController extends Controller
     
     public function show($id)
     {
-        $aktor = Aktor::find($id);
+        $aktor = aktor::find($id);
         if ($aktor) {
             return response([
                 'success' => true,
-                'message' => 'Detail Aktor disimpan',
+                'message' => 'Detail aktor disimpan',
                 'data' => $aktor,
             ],200 );
         } else {
@@ -58,7 +57,7 @@ class AktorController extends Controller
     }
 
     
-    // public function edit(Aktor $Aktor)
+    // public function edit(aktor $aktor)
     // {
         
     // }
@@ -66,7 +65,7 @@ class AktorController extends Controller
     
     public function update(Request $request, $id)
     {
-        $aktor = Aktor::find($id);
+        $aktor = aktor::find($id);
         if ($aktor) {
             $aktor->nama_aktor = $request->nama_aktor;
             $aktor->bio = $request->bio;
@@ -74,7 +73,7 @@ class AktorController extends Controller
             return response([
                 'success' => true,
                 'message' => 'Data berhasil diperbarui',
-                'data' => $Aktor,
+                'data' => $aktor,
             ],200 );
         } else {
             return response()->json([
@@ -84,9 +83,9 @@ class AktorController extends Controller
         }   
     }
 
-    public function destroy(Aktor $id)
+    public function destroy(aktor $id)
     {
-        $aktor = Aktor::find($id);
+        $aktor = aktor::find($id);
         if ($aktor) {
             $aktor->delete();
             return response()->json([
@@ -98,6 +97,6 @@ class AktorController extends Controller
                 'success' => false,
                 'message' => 'data tidak ditemukan'
             ]);
-    }
+        }
     }
 }
