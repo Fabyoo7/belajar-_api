@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\Api\Aktorcontroller;
+use App\Http\Controllers\Api\AktorController;
 use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\Genrecontroller;
-use App\Http\Controllers\Api\Kategoricontroller;
+use App\Http\Controllers\Api\GenreController;
+use App\Http\Controllers\Api\KategoriController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
