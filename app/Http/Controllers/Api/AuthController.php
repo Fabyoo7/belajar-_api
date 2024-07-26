@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Support\Facades\Hash;
-use App\Http\Controllers\Api\Controller;
 use App\Models\User;
-use Auth;
 use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
+
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -35,7 +35,6 @@ class AuthController extends Controller
             'message' => 'user berhasil dibuat',
         ]);
     }
-
     public function login(Request $request)
     {
         if (!Auth::attempt($request->only('email', 'password'))) {
